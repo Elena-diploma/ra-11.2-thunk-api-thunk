@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {
+  HashRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from 'react-router-dom';
+import ServiceEdit from './components/ServiceEdit';
+import ServiceList from './components/ServiceList';
+import Page404 from './components/Page404';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <Router>
+        <div className="page">
+          <Routes>
+            <Route path="/services/:id" element={<ServiceEdit />} />
+            <Route path="/services" element={<ServiceList />} />
+            <Route path="/" element={<Navigate to="/services" />} />
+            <Route path="*" element={<Page404 />} />
+          </Routes>
+        </div>
+      </Router>
   );
 }
-
-export default App;
